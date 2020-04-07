@@ -1,5 +1,5 @@
 [package]
-name = "WasmiMemoryTest"
+name = "wasmi_memory_test"
 version = "0.1.0"
 authors = ["assafmo <assaf.morami@gmail.com>"]
 edition = "2018"
@@ -7,6 +7,9 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+wabt = "0.9.2"
+wasmi = { git = "https://github.com/paritytech/wasmi", branch = "master", default-features = false, features = ["core"] }
+
 
 [[bin]]
 name = "WasmiMemoryTest"
