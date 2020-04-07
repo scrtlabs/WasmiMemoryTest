@@ -1,0 +1,26 @@
+[package]
+name = "wasm-example"
+version = "0.1.0"
+authors = ["Reuven Podmazo <reuven@enigma.co>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.dev]
+panic = "abort"
+lto = true
+
+[profile.release]
+panic = "abort"
+lto = true
+
+[profile.test]
+lto = true
+
+[profile.bench]
+lto = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
