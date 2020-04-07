@@ -28,7 +28,7 @@ fn main() {
             instance
                 .invoke_export("get_first_i32", &[], &mut wasmi::NopExternals)
                 .expect("failed to execute get_first_i32 2"),
-            Some(RuntimeValue::I32(1234))
+            Some(RuntimeValue::I32(123))
         );
     }
 
@@ -61,7 +61,7 @@ fn main() {
             .as_memory()
             .cloned()
             .expect("'memory' export should be a memory");
-        mem.set_value(0, 123 as i32)
+        mem.set_value(0, 1234 as i32)
             .expect("memory.set_value should not fail");
 
         println!(
@@ -69,7 +69,7 @@ fn main() {
             instance
                 .invoke_export("get_first_i32", &[], &mut wasmi::NopExternals)
                 .expect("failed to execute get_first_i32 2"),
-            Some(RuntimeValue::I32(123))
+            Some(RuntimeValue::I32(1234))
         );
     }
 
@@ -92,7 +92,7 @@ fn main() {
             .as_memory()
             .cloned()
             .expect("'memory' export should be a memory");
-        mem.set_value(1, 12345 as i32)
+        mem.set_value(4, 12345 as i32)
             .expect("memory.set_value should not fail");
 
         println!(
@@ -113,7 +113,6 @@ impl wasmi::ModuleImportResolver for ResolveAll {
         field_name: &str,
         descriptor: &MemoryDescriptor,
     ) -> Result<MemoryRef, wasmi::Error> {
-        println!("Fetching memory from {}", field_name);
         if field_name == "memory" {
             let mem = MemoryInstance::alloc(
                 memory_units::Pages(descriptor.initial() as usize),
@@ -122,7 +121,7 @@ impl wasmi::ModuleImportResolver for ResolveAll {
                     .map(|x| memory_units::Pages(x as usize)),
             )?;
 
-            mem.set_value(0, 1234 as i32)?;
+            mem.set_value(0, 123 as i32)?;
             Ok(mem)
         } else {
             Err(wasmi::Error::Instantiation(
