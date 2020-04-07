@@ -12,5 +12,5 @@ wasmi = { git = "https://github.com/paritytech/wasmi", branch = "master", defaul
 
 
 [[bin]]
-name = "WasmiMemoryTest"
+name = "wasmi_memory_test"
 path = "main.rs"
