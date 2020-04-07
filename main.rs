@@ -23,11 +23,12 @@ fn main() {
         let instance = ModuleInstance::new(&module, &imports)
             .expect("failed to instantiate wasm module 2")
             .assert_no_start();
-        assert_eq!(
+        println!(
+            "import got {:?} wanted {:?}",
             instance
                 .invoke_export("get_first_i32", &[], &mut wasmi::NopExternals)
-                .expect("failed to execute export 2"),
-            Some(RuntimeValue::I32(1234)),
+                .expect("failed to execute get_first_i32 2"),
+            Some(RuntimeValue::I32(1234))
         );
     }
 
@@ -53,11 +54,12 @@ fn main() {
         let instance = ModuleInstance::new(&module, &imports)
             .expect("failed to instantiate wasm module 1")
             .assert_no_start();
-        assert_eq!(
+        println!(
+            "export got {:?} wanted {:?}",
             instance
                 .invoke_export("get_first_i32", &[], &mut wasmi::NopExternals)
-                .expect("failed to execute export 1"),
-            Some(RuntimeValue::I32(1234)),
+                .expect("failed to execute get_first_i32 2"),
+            Some(RuntimeValue::I32(1234))
         );
     }
 }
