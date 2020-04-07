@@ -1,6 +1,8 @@
-We import memory from rust to WASM, then try to see what happens when WASM code imports memory vs. exports memory.
+An example of how to share memory with a wasmi module.
 
-According to wasmi it doesn't matter, according to WASM it does, so lets see what happens.
+1. When the module imports memory
+2. When the module exports memory
+3. When rust is compiled to WASM and by defualt exports memory
 
 Run with:
 
